@@ -33,6 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _incrementCounter() {
     setState(() {
       _counter++;
+      _saveNumber();
     });
   }
 
@@ -62,5 +63,12 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Icon(Icons.add),
       ),
     );
+  }
+
+  static const String counterNumberPrefs = 'counterNumber';
+
+  void _saveNumber() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setInt(counterNumberPrefs, _counter);
   }
 }
